@@ -9,202 +9,169 @@
 <title>🚗 Araç Bakım</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#0f172a;--bg2:#1e293b;--bg3:#334155;
-  --accent:#3b82f6;--accent2:#2563eb;
-  --green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f97316;
-  --text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;
-  --card:#1e293b;--border:#334155;--radius:14px;
-}
-body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh;padding-bottom:80px}
+:root{--bg:#0f172a;--bg2:#1e293b;--bg3:#334155;--accent:#3b82f6;--accent2:#2563eb;--green:#22c55e;--yellow:#eab308;--red:#ef4444;--orange:#f97316;--text:#f1f5f9;--text2:#94a3b8;--text3:#64748b;--card:#1e293b;--border:#334155;--radius:14px}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh;padding-bottom:100px}
 .hidden{display:none!important}
 .nav{position:fixed;top:0;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--border);z-index:100;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
-.nav-title{font-size:18px;font-weight:800;color:var(--text)}
+.nav-title{font-size:18px;font-weight:800}
 .nav-btn{background:var(--bg3);border:none;color:var(--text);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600}
-.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100}
-.tab{flex:1;padding:10px 0;text-align:center;cursor:pointer;font-size:11px;color:var(--text3);border:none;background:none}
-.tab .tab-icon{font-size:22px;display:block;margin-bottom:2px}
+.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--border);display:flex;z-index:100;height:62px}
+.tab{flex:1;padding:8px 0;text-align:center;cursor:pointer;font-size:11px;color:var(--text3);border:none;background:none}
+.tab .ti{font-size:22px;display:block;margin-bottom:2px}
 .tab.active{color:var(--accent)}
 .screen{padding:72px 16px 16px;display:none}
 .screen.active{display:block}
 .card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border)}
-.vehicle-card{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:4px solid var(--accent);cursor:pointer;transition:transform .15s}
-.vehicle-card:active{transform:scale(.98)}
-.vehicle-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.vehicle-color{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
-.vehicle-info{flex:1}
-.vehicle-name{font-size:16px;font-weight:700}
-.vehicle-plate{font-size:13px;color:var(--text2);margin-top:2px}
-.vehicle-km{font-size:13px;color:var(--accent);font-weight:600}
-.alert-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.vc{background:var(--card);border-radius:var(--radius);padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:4px solid var(--accent);cursor:pointer}
+.vc:active{transform:scale(.98)}
+.vtop{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.vcolor{width:40px;height:40px;border-radius:10px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.vinfo{flex:1}
+.vname{font-size:16px;font-weight:700}
+.vplate{font-size:13px;color:var(--text2);margin-top:2px}
+.pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .pill{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:600}
-.pill-red{background:#fef2f2;color:#dc2626}
-.pill-orange{background:#fff7ed;color:#c2410c}
-.pill-yellow{background:#fefce8;color:#92400e}
-.pill-green{background:#f0fdf4;color:#15803d}
-.maint-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
-.maint-row:last-child{border-bottom:none}
-.maint-icon{font-size:22px;width:32px;text-align:center;flex-shrink:0}
-.maint-info{flex:1;min-width:0}
-.maint-name{font-size:13px;font-weight:600}
-.maint-due{font-size:11px;color:var(--text2);margin-top:2px}
-.maint-eta{font-size:11px;margin-top:2px}
-.maint-status{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.status-green{background:var(--green)}
-.status-yellow{background:var(--yellow)}
-.status-orange{background:var(--orange)}
-.status-red{background:var(--red)}
-.status-gray{background:var(--text3)}
-.maint-btn{background:var(--bg3);border:none;color:var(--text);border-radius:8px;padding:5px 8px;cursor:pointer;font-size:11px;flex-shrink:0;white-space:nowrap}
-.form-section{margin-bottom:16px}
-.form-label{font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px;display:block}
+.pr{background:#fef2f2;color:#dc2626}.po{background:#fff7ed;color:#c2410c}.pg{background:#f0fdf4;color:#15803d}
+.mr{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.mr:last-child{border-bottom:none}
+.mi{font-size:22px;width:32px;text-align:center;flex-shrink:0}
+.minfo{flex:1;min-width:0}
+.mname{font-size:13px;font-weight:600}
+.mdue{font-size:11px;color:var(--text2);margin-top:2px}
+.meta2{font-size:11px;margin-top:2px;color:var(--text3)}
+.ms{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.sg{background:var(--green)}.sy{background:var(--yellow)}.so{background:var(--orange)}.sr{background:var(--red)}.sgr{background:var(--text3)}
+.mb{background:var(--bg3);border:none;color:var(--text);border-radius:8px;padding:5px 8px;cursor:pointer;font-size:11px;flex-shrink:0}
+.fl{margin-bottom:16px}
+.fl label{display:block;font-size:13px;font-weight:600;color:var(--text2);margin-bottom:6px}
 input[type=text],input[type=number],input[type=date],select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-size:14px;outline:none;font-family:inherit}
 input:focus,select:focus,textarea:focus{border-color:var(--accent)}
 textarea{resize:vertical;min-height:60px}
-.color-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
-.color-opt{width:36px;height:36px;border-radius:10px;border:3px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}
-.color-opt.selected{border-color:#fff}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn-primary{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
-.btn-secondary{width:100%;padding:11px;border-radius:12px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
-.btn-danger{width:100%;padding:11px;border-radius:12px;border:none;background:#7f1d1d;color:#fca5a5;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
-.btn-success{width:100%;padding:11px;border-radius:12px;border:none;background:#14532d;color:#86efac;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
-.err{color:var(--red);font-size:13px;margin-top:6px}
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:flex-end;justify-content:center}
-.modal{background:var(--bg2);border-radius:20px 20px 0 0;padding:20px 16px 32px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto}
-.modal-handle{width:40px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 16px}
-.modal-title{font-size:18px;font-weight:700;margin-bottom:16px}
-.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.summary-box{background:var(--bg3);border-radius:12px;padding:14px;text-align:center}
-.summary-num{font-size:28px;font-weight:800}
-.summary-lbl{font-size:12px;color:var(--text2);margin-top:2px}
-.history-row{padding:10px 0;border-bottom:1px solid var(--border)}
-.history-row:last-child{border-bottom:none}
-.history-top{display:flex;justify-content:space-between;align-items:center}
-.history-name{font-size:14px;font-weight:600}
-.history-date{font-size:12px;color:var(--text2)}
-.history-detail{font-size:12px;color:var(--text3);margin-top:3px}
-.fab{position:fixed;bottom:90px;right:20px;width:54px;height:54px;-radius:50%;border:none;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;font-size:28px;cursor:pointer;box-shadow:0 6px 20px rgba(249,115,22,.4);display:flex;align-items:center;justify-content:center;z-index:99}
-.alert-banner{background:var(--bg2);border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:4px solid var(--red);display:flex;align-items:center;gap:10px}
-.alert-banner.warn{border-left-color:var(--orange)}
-.alert-banner.info{border-left-color:var(--yellow)}
-.alert-text{flex:1;font-size:13px}
-.alert-title{font-weight:700;margin-bottom:2px}
-.alert-sub{color:var(--text2);font-size:12px}
+.cg{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.co{width:36px;height:36px;border-radius:10px;border:3px solid transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px}
+.co.selected{border-color:#fff}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bp{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+.bs{width:100%;padding:11px;border-radius:12px;border:1.5px solid var(--border);background:transparent;color:var(--text);font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
+.bd{width:100%;padding:11px;border-radius:12px;border:none;background:#7f1d1d;color:#fca5a5;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
+.er{color:var(--red);font-size:13px;margin-top:6px}
+.mo{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:flex;align-items:flex-end;justify-content:center}
+.md{background:var(--bg2);border-radius:20px 20px 0 0;padding:20px 16px 36px;width:100%;max-width:480px;max-height:92vh;overflow-y:auto}
+.mh{width:40px;height:4px;background:var(--border);border-radius:99px;margin:0 auto 16px}
+.mt{font-size:18px;font-weight:700;margin-bottom:16px}
+.sg2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.sb{background:var(--bg3);border-radius:12px;padding:14px;text-align:center}
+.sn{font-size:28px;font-weight:800}
+.sl{font-size:12px;color:var(--text2);margin-top:2px}
+.hr{padding:10px 0;border-bottom:1px solid var(--border)}
+.hr:last-child{border-bottom:none}
+.ht{display:flex;justify-content:space-between;align-items:center}
+.hn{font-size:14px;font-weight:600}
+.hd{font-size:12px;color:var(--text2)}
+.hdt{font-size:12px;color:var(--text3);margin-top:3px}
+.fab{position:fixed;bottom:72px;right:20px;width:56px;height:56px;border-radius:50%;border:none;background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;font-size:30px;cursor:pointer;box-shadow:0 4px 20px rgba(249,115,22,.6);display:flex;align-items:center;justify-content:center;z-index:150}
+.ab{background:var(--bg2);border-radius:12px;padding:12px 14px;margin-bottom:10px;border-left:4px solid var(--red);display:flex;align-items:center;gap:10px}
+.ab.warn{border-left-color:var(--orange)}
+.at{flex:1;font-size:13px}
+.atitle{font-weight:700;margin-bottom:2px}
+.asub{color:var(--text2);font-size:12px}
 .empty{text-align:center;color:var(--text3);padding:60px 20px;line-height:1.8}
-.section-title{font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px}
-/* Değişim listesi modalı */
-.check-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
-.check-item:last-child{border-bottom:none}
-.check-left{display:flex;align-items:center;gap:10px}
-.check-icon{font-size:20px;width:28px;text-align:center}
-.check-info{flex:1}
-.check-name{font-size:14px;font-weight:600}
-.check-detail{font-size:11px;color:var(--text2);margin-top:2px}
-.check-btns{display:flex;gap:6px}
-.check-yes{background:#14532d;color:#86efac;border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:700}
-.check-no{background:var(--bg3);color:var(--text2);border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:700}
-/* Ayarlar parça listesi */
-.interval-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--border)}
-.interval-row:last-child{border-bottom:none}
-.interval-icon{font-size:18px;width:24px;text-align:center;flex-shrink:0}
-.interval-name{flex:1;font-size:13px;font-weight:600}
-.interval-inputs{display:flex;gap:6px;align-items:center}
-.interval-input{width:70px;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-size:12px;text-align:center}
-.interval-unit{font-size:11px;color:var(--text3);white-space:nowrap}
-/* Bildirim badge */
-.notif-badge{background:var(--red);color:#fff;border-radius:99px;font-size:10px;font-weight:700;padding:1px 5px;margin-left:4px;vertical-align:middle}
+.stitle{font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 8px}
+.ci{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.ci:last-child{border-bottom:none}
+.cl{display:flex;align-items:center;gap:10px}
+.ck{font-size:20px;width:28px;text-align:center}
+.cn{font-size:14px;font-weight:600}
+.cd{font-size:11px;color:var(--text2);margin-top:2px}
+.cbs{display:flex;gap:6px}
+.cy{background:#14532d;color:#86efac;border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:700}
+.cn2{background:var(--bg3);color:var(--text2);border:none;border-radius:8px;padding:7px 12px;cursor:pointer;font-size:12px;font-weight:700}
+.ir{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--border)}
+.ir:last-child{border-bottom:none}
+.ii{font-size:18px;width:24px;text-align:center;flex-shrink:0}
+.iname{flex:1;font-size:13px;font-weight:600}
+.iinputs{display:flex;gap:6px;align-items:center}
+.iinput{width:68px;padding:6px 8px;border-radius:8px;border:1.5px solid var(--border);background:var(--bg3);color:var(--text);font-size:12px;text-align:center}
+.iunit{font-size:11px;color:var(--text3);white-space:nowrap}
 </style>
 </head>
 <body>
-
 <div class="nav">
   <span class="nav-title" id="nav-title">🚗 Araç Bakım</span>
   <button class="nav-btn hidden" id="nav-action"></button>
 </div>
-
 <div class="screen active" id="screen-home">
   <div id="home-alerts"></div>
-  <div class="summary-grid" id="home-summary"></div>
+  <div class="sg2" id="home-summary"></div>
   <div id="home-vehicles"></div>
 </div>
-
-<div class="screen" id="screen-vehicle">
-  <div id="vehicle-detail"></div>
-</div>
-
-<div class="screen" id="screen-history">
-  <div id="history-content"></div>
-</div>
-
+<div class="screen" id="screen-vehicle"><div id="vehicle-detail"></div></div>
+<div class="screen" id="screen-history"><div id="history-content"></div></div>
 <div class="screen" id="screen-settings">
   <div class="card">
-    <div class="card-title" style="font-size:16px;font-weight:700;margin-bottom:12px">⏱ Varsayılan Değişim Aralıkları</div>
-    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">KM veya gün değerini 0 bırakırsanız o kriter hesaba katılmaz.</p>
+    <div style="font-size:16px;font-weight:700;margin-bottom:8px">⏱ Değişim Aralıkları</div>
+    <p style="font-size:12px;color:var(--text2);margin-bottom:12px">0 bırakırsanız o kriter hesaba katılmaz.</p>
     <div id="interval-list"></div>
-    <button class="btn-primary" onclick="saveIntervals()">💾 Kaydet</button>
+    <button class="bp" onclick="saveIntervals()">💾 Kaydet</button>
   </div>
-  <div class="card" style="margin-top:4px">
+  <div class="card">
     <div style="font-size:16px;font-weight:700;margin-bottom:12px">🗂 Veri</div>
-    <button class="btn-secondary" id="export-btn">📤 Dışa Aktar (JSON)</button>
-    <button class="btn-secondary" id="import-btn-trigger">📥 İçe Aktar</button>
+    <button class="bs" id="export-btn">📤 Dışa Aktar</button>
+    <button class="bs" id="import-btn-trigger">📥 İçe Aktar</button>
     <input type="file" id="import-file" accept=".json" class="hidden"/>
-    <button class="btn-danger" id="clear-btn">🗑 Tüm Verileri Sil</button>
+    <button class="bd" id="clear-btn">🗑 Tüm Verileri Sil</button>
   </div>
 </div>
-
 <div class="tabs">
-  <button class="tab active" data-screen="home"><span class="tab-icon">🏠</span>Ana Sayfa</button>
-  <button class="tab" data-screen="history"><span class="tab-icon">📋</span>Geçmiş</button>
-  <button class="tab" data-screen="settings"><span class="tab-icon">⚙️</span>Ayarlar</button>
+  <button class="tab active" data-screen="home"><span class="ti">🏠</span>Ana Sayfa</button>
+  <button class="tab" data-screen="history"><span class="ti">📋</span>Geçmiş</button>
+  <button class="tab" data-screen="settings"><span class="ti">⚙️</span>Ayarlar</button>
 </div>
-
-<button class="fab hidden" id="fab">＋</button>
-
+<button class="fab" id="fab" onclick="openAddVehicle()">＋</button>
 <!-- ARAÇ MODAL -->
-<div class="modal-overlay hidden" id="modal-vehicle">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="mv-title">Araç Ekle</div>
-    <div class="form-section">
-      <label class="form-label">Renk / İkon</label>
-      <div class="color-group" id="color-group">
-        <div class="color-opt selected" data-color="#3b82f6" data-icon="🚗" style="background:#3b82f6">🚗</div>
-        <div class="color-opt" data-color="#ef4444" data-icon="🚗" style="background:#ef4444">🚗</div>
-        <div class="color-opt" data-color="#22c55e" data-icon="🚗" style="background:#22c55e">🚗</div>
-        <div class="color-opt" data-color="#f59e0b" data-icon="🚗" style="background:#f59e0b">🚗</div>
-        <div class="color-opt" data-color="#8b5cf6" data-icon="🚗" style="background:#8b5cf6">🚗</div>
-        <div class="color-opt" data-color="#ec4899" data-icon="🚗" style="background:#ec4899">🚗</div>
-        <div class="color-opt" data-color="#64748b" data-icon="🚙" style="background:#64748b">🚙</div>
-        <div class="color-opt" data-color="#334155" data-icon="🚐" style="background:#334155">🚐</div>
+<div class="mo hidden" id="modal-vehicle">
+  <div class="md">
+    <div class="mh"></div>
+    <div class="mt" id="mv-title">Araç Ekle</div>
+    <div class="fl">
+      <label>Renk / İkon</label>
+      <div class="cg" id="color-group">
+        <div class="co selected" data-color="#3b82f6" data-icon="🚗" style="background:#3b82f6">🚗</div>
+        <div class="co" data-color="#ef4444" data-icon="🚗" style="background:#ef4444">🚗</div>
+        <div class="co" data-color="#22c55e" data-icon="🚗" style="background:#22c55e">🚗</div>
+        <div class="co" data-color="#f59e0b" data-icon="🚗" style="background:#f59e0b">🚗</div>
+        <div class="co" data-color="#8b5cf6" data-icon="🚗" style="background:#8b5cf6">🚗</div>
+        <div class="co" data-color="#ec4899" data-icon="🚗" style="background:#ec4899">🚗</div>
+        <div class="co" data-color="#64748b" data-icon="🚙" style="background:#64748b">🚙</div>
+        <div class="co" data-color="#334155" data-icon="🚐" style="background:#334155">🚐</div>
       </div>
     </div>
-    <div class="form-row">
-      <div class="form-section"><label class="form-label">Marka</label><input type="text" id="v-brand" placeholder="Toyota"/></div>
-      <div class="form-section"><label class="form-label">Model</label><input type="text" id="v-model" placeholder="Corolla"/></div>
+    <div class="fr">
+      <div class="fl"><label>Marka</label><input type="text" id="v-brand" placeholder="Toyota"/></div>
+      <div class="fl"><label>Model</label><input type="text" id="v-model" placeholder="Corolla"/></div>
     </div>
-    <div class="form-row">
-      <div class="form-section"><label class="form-label">Yıl</label><input type="number" id="v-year" placeholder="2018"/></div>
-      <div class="form-section"><label class="form-label">Plaka</label><input type="text" id="v-plate" placeholder="34 ABC 123"/></div>
+    <div class="fr">
+      <div class="fl"><label>Yıl</label><input type="number" id="v-year" placeholder="2018"/></div>
+      <div class="fl"><label>Plaka</label><input type="text" id="v-plate" placeholder="34 ABC 123"/></div>
     </div>
-    <div class="form-row">
-      <div class="form-section"><label class="form-label">Güncel KM</label><input type="number" id="v-km" placeholder="85000"/></div>
-      <div class="form-section"><label class="form-label">Günlük Ort. KM</label><input type="number" id="v-daily" placeholder="50"/></div>
+    <div class="fr">
+      <div class="fl"><label>Güncel KM</label><input type="number" id="v-km" placeholder="85000"/></div>
+      <div class="fl"><label>Günlük Ort. KM</label><input type="number" id="v-daily" placeholder="50"/></div>
     </div>
-    <p class="err hidden" id="v-err"></p>
-    <button class="btn-primary" id="v-save">Kaydet</button>
-    <button class="btn-secondary" id="v-cancel">İptal</button>
-    <button class="btn-danger hidden" id="v-delete">Aracı Sil</button>
+    <p class="er hidden" id="v-err"></p>
+    <button class="bp" id="v-save">Kaydet</button>
+    <button class="bs" id="v-cancel">İptal</button>
+    <button class="bd hidden" id="v-delete">Aracı Sil</button>
   </div>
 </div>
 
 <!-- BAKIM MODAL -->
-<div class="modal-overlay hidden" id="modal-maint">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title" id="mm-title">Bakım Kaydı</div>
-    <div class="form-section">
-      <label class="form-label">Bakım Türü</label>
+<div class="mo hidden" id="modal-maint">
+  <div class="md">
+    <div class="mh"></div>
+    <div class="mt" id="mm-title">Bakım Kaydı</div>
+    <div class="fl">
+      <label>Bakım Türü</label>
       <select id="m-type">
         <option value="yag">🛢 Motor Yağı</option>
         <option value="yag_filtre">🔩 Yağ Filtresi</option>
@@ -224,305 +191,262 @@ textarea{resize:vertical;min-height:60px}
         <option value="ozel">✏️ Özel Bakım</option>
       </select>
     </div>
-    <div class="form-section hidden" id="m-custom-wrap">
-      <label class="form-label">Bakım Adı</label>
+    <div class="fl hidden" id="m-custom-wrap">
+      <label>Bakım Adı</label>
       <input type="text" id="m-custom-name" placeholder="örn: Klima Bakımı"/>
     </div>
-    <div class="form-row">
-      <div class="form-section"><label class="form-label">Yapıldığı Tarih</label><input type="date" id="m-date"/></div>
-      <div class="form-section"><label class="form-label">Yapıldığı KM</label><input type="number" id="m-km" placeholder="85000"/></div>
+    <div class="fr">
+      <div class="fl"><label>Tarih</label><input type="date" id="m-date"/></div>
+      <div class="fl"><label>KM</label><input type="number" id="m-km" placeholder="85000"/></div>
     </div>
-    <div class="form-row">
-      <div class="form-section"><label class="form-label">Ücret (₺)</label><input type="number" id="m-cost" placeholder="0"/></div>
-      <div class="form-section"><label class="form-label">Servis / Yer</label><input type="text" id="m-place" placeholder="Bosch Servis"/></div>
+    <div class="fr">
+      <div class="fl"><label>Ücret (₺)</label><input type="number" id="m-cost" placeholder="0"/></div>
+      <div class="fl"><label>Servis</label><input type="text" id="m-place" placeholder="Bosch Servis"/></div>
     </div>
-    <div class="form-section"><label class="form-label">Not</label><textarea id="m-note" placeholder="Ek bilgiler..."></textarea></div>
-    <p class="err hidden" id="m-err"></p>
-    <button class="btn-primary" id="m-save">Kaydet</button>
-    <button class="btn-secondary" id="m-cancel">İptal</button>
+    <div class="fl"><label>Not</label><textarea id="m-note" placeholder="Ek bilgiler..."></textarea></div>
+    <p class="er hidden" id="m-err"></p>
+    <button class="bp" id="m-save">Kaydet</button>
+    <button class="bs" id="m-cancel">İptal</button>
   </div>
 </div>
 
-<!-- KM GÜNCELLE MODAL -->
-<div class="modal-overlay hidden" id="modal-km">
-  <div class="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-title">🔢 KM Güncelle</div>
-    <div class="form-section"><label class="form-label">Güncel KM</label><input type="number" id="km-val" placeholder="90000"/></div>
-    <div class="form-section"><label class="form-label">Günlük Ort. KM (km/gün)</label><input type="number" id="km-daily" placeholder="50"/></div>
-    <!-- Değişim kontrol listesi -->
+<!-- KM MODAL -->
+<div class="mo hidden" id="modal-km">
+  <div class="md">
+    <div class="mh"></div>
+    <div class="mt">🔢 KM Güncelle</div>
+    <div class="fr">
+      <div class="fl"><label>Güncel KM</label><input type="number" id="km-val" placeholder="90000"/></div>
+      <div class="fl"><label>Günlük KM</label><input type="number" id="km-daily" placeholder="50"/></div>
+    </div>
     <div id="km-checklist-wrap" class="hidden">
-      <div style="font-size:14px;font-weight:700;color:var(--orange);margin:12px 0 8px">⚠️ Değişim Zamanı Gelen Parçalar</div>
-      <div style="font-size:12px;color:var(--text2);margin-bottom:10px">Aşağıdaki parçalar bu KM'de değişmesi gereken parçalardır. Değiştirdiyseniz ✔ Değişti seçin.</div>
+      <div style="font-size:14px;font-weight:700;color:var(--orange);margin:12px 0 6px">⚠️ Değişim Zamanı Gelenler</div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:10px">Değiştirdiyseniz ✔ Değişti seçin, otomatik kaydedilir.</div>
       <div id="km-checklist"></div>
     </div>
-    <button class="btn-primary" id="km-save">Güncelle</button>
-    <button class="btn-secondary" id="km-cancel">İptal</button>
+    <button class="bp" id="km-save">Güncelle</button>
+    <button class="bs" id="km-cancel">İptal</button>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════
-// VERİ & SABITLER
-// ══════════════════════════════════════
 const SK="arac_bakim_v2",IK="arac_intervals_v1";
 let data={vehicles:[],history:[]};
-
-// Varsayılan değişim aralıkları
-const DEFAULT_INTERVALS={
-  yag:         {name:"Motor Yağı",      icon:"🛢", defKm:10000, defDay:365},
-  yag_filtre:  {name:"Yağ Filtresi",    icon:"🔩", defKm:10000, defDay:365},
-  hava_filtre: {name:"Hava Filtresi",   icon:"💨", defKm:15000, defDay:365},
-  lastik:      {name:"Lastik Rotasyon", icon:"🔄", defKm:15000, defDay:365},
-  lastik_degisim:{name:"Lastik Değişim",icon:"🏎", defKm:40000, defDay:1825},
-  muayene:     {name:"Muayene",         icon:"📋", defKm:0,     defDay:730},
-  sigorta:     {name:"Sigorta",         icon:"🛡", defKm:0,     defDay:365},
-  kasko:       {name:"Kasko",           icon:"🔰", defKm:0,     defDay:365},
-  fren:        {name:"Fren Balata",     icon:"🔧", defKm:30000, defDay:730},
-  aku:         {name:"Akü",             icon:"🔋", defKm:0,     defDay:1460},
-  triger:      {name:"Triger/Kayış",    icon:"⚙️", defKm:60000, defDay:1825},
-  antifriz:    {name:"Antifriz",        icon:"❄️", defKm:0,     defDay:730},
-  buji:        {name:"Buji",            icon:"⚡", defKm:30000, defDay:730},
-  debriyaj:    {name:"Debriyaj",        icon:"🔀", defKm:80000, defDay:0},
-  amortasor:   {name:"Amortisör",       icon:"🔽", defKm:50000, defDay:0},
-  ozel:        {name:"Özel Bakım",      icon:"✏️", defKm:0,     defDay:0}
+const DI={
+  yag:          {name:"Motor Yağı",      icon:"🛢", defKm:10000,defDay:365},
+  yag_filtre:   {name:"Yağ Filtresi",    icon:"🔩", defKm:10000,defDay:365},
+  hava_filtre:  {name:"Hava Filtresi",   icon:"💨", defKm:15000,defDay:365},
+  lastik:       {name:"Lastik Rotasyon", icon:"🔄", defKm:15000,defDay:365},
+  lastik_degisim:{name:"Lastik Değişim", icon:"🏎", defKm:40000,defDay:1825},
+  muayene:      {name:"Muayene",         icon:"📋", defKm:0,    defDay:730},
+  sigorta:      {name:"Sigorta",         icon:"🛡", defKm:0,    defDay:365},
+  kasko:        {name:"Kasko",           icon:"🔰", defKm:0,    defDay:365},
+  fren:         {name:"Fren Balata",     icon:"🔧", defKm:30000,defDay:730},
+  aku:          {name:"Akü",             icon:"🔋", defKm:0,    defDay:1460},
+  triger:       {name:"Triger/Kayış",    icon:"⚙️", defKm:60000,defDay:1825},
+  antifriz:     {name:"Antifriz",        icon:"❄️", defKm:0,    defDay:730},
+  buji:         {name:"Buji",            icon:"⚡", defKm:30000,defDay:730},
+  debriyaj:     {name:"Debriyaj",        icon:"🔀", defKm:80000,defDay:0},
+  amortasor:    {name:"Amortisör",       icon:"🔽", defKm:50000,defDay:0},
+  ozel:         {name:"Özel Bakım",      icon:"✏️", defKm:0,    defDay:0}
 };
-
 let intervals={};
 
 function loadIntervals(){
   try{const r=localStorage.getItem(IK);if(r)intervals=JSON.parse(r);}catch{}
-  // Eksik olanları varsayılanlarla doldur
-  Object.keys(DEFAULT_INTERVALS).forEach(k=>{
-    if(!intervals[k]) intervals[k]={km:DEFAULT_INTERVALS[k].defKm,day:DEFAULT_INTERVALS[k].defDay};
-  });
+  Object.keys(DI).forEach(k=>{if(!intervals[k])intervals[k]={km:DI[k].defKm,day:DI[k].defDay};});
 }
-
-function saveIntervalsData(){
-  localStorage.setItem(IK,JSON.stringify(intervals));
-}
-
+function saveIntervalsData(){localStorage.setItem(IK,JSON.stringify(intervals));}
 function load(){
   try{const r=localStorage.getItem(SK);if(r)data=JSON.parse(r);}catch{}
   if(!data.vehicles)data.vehicles=[];
   if(!data.history)data.history=[];
 }
 function save(){localStorage.setItem(SK,JSON.stringify(data));}
+load();loadIntervals();
 
-load();
-loadIntervals();
-
-// ══════════════════════════════════════
-// DURUM HESAPLA
-// ══════════════════════════════════════
-function getStatus(vehicle,type,customName){
+function getStatus(v,type,customName){
   const iv=intervals[type]||{km:0,day:0};
   const hist=data.history
-    .filter(h=>h.vehicleId===vehicle.id&&h.type===type&&(type!=="ozel"||(h.customName||"")===(customName||"")))
+    .filter(h=>h.vehicleId===v.id&&h.type===type&&(type!=="ozel"||(h.customName||"")===(customName||"")))
     .sort((a,b)=>new Date(b.date)-new Date(a.date));
   const last=hist[0];
   if(!last)return{status:"unknown",label:"Kayıt yok",eta:""};
-
   const now=Date.now();
   let worst="ok",labels=[],eta="";
-
-  // KM bazlı
-  if(iv.km>0 && vehicle.km){
-    const nextKm=(last.km||vehicle.km)+iv.km;
-    const kmLeft=nextKm-vehicle.km;
+  if(iv.km>0&&v.km){
+    const nextKm=(last.km||v.km)+iv.km;
+    const kmLeft=nextKm-v.km;
     let ks="ok";
-    if(kmLeft<=0) ks="overdue";
-    else if(kmLeft<=1000) ks="critical";
-    else if(kmLeft<=3000) ks="warn";
-    if(ks!=="ok") worst=ks;
-    labels.push(kmLeft<=0?`${Math.abs(kmLeft).toLocaleString()} km geçti`:`${nextKm.toLocaleString()} km'de`);
-    // ETA hesapla
-    if(vehicle.dailyKm&&kmLeft>0){
-      const days=Math.ceil(kmLeft/vehicle.dailyKm);
-      eta=`~${days} gün sonra (${Math.round(days/30)} ay)`;
+    if(kmLeft<=0)ks="overdue";
+    else if(kmLeft<=1000)ks="critical";
+    else if(kmLeft<=3000)ks="warn";
+    if(ks!=="ok")worst=ks;
+    labels.push(kmLeft<=0?Math.abs(kmLeft).toLocaleString()+" km geçti":nextKm.toLocaleString()+" km'de");
+    if(v.dailyKm&&kmLeft>0){
+      const days=Math.ceil(kmLeft/v.dailyKm);
+      eta="~"+days+" gün ("+Math.round(days/30)+" ay) sonra";
     }
   }
-
-  // Tarih bazlı
   if(iv.day>0){
     const nextDate=new Date(new Date(last.date).getTime()+iv.day*86400000);
     const daysLeft=Math.ceil((nextDate-now)/86400000);
     let ds="ok";
-    if(daysLeft<=0) ds="overdue";
-    else if(daysLeft<=14) ds="critical";
-    else if(daysLeft<=30) ds="warn";
-    if(ds!=="ok"&&(worst==="ok"||worst==="warn")) worst=ds;
-    labels.push(daysLeft<=0?`${Math.abs(daysLeft)} gün geçti`:nextDate.toLocaleDateString("tr-TR")+"'de");
+    if(daysLeft<=0)ds="overdue";
+    else if(daysLeft<=14)ds="critical";
+    else if(daysLeft<=30)ds="warn";
+    if(ds!=="ok"&&(worst==="ok"||worst==="warn"))worst=ds;
+    labels.push(daysLeft<=0?Math.abs(daysLeft)+" gün geçti":nextDate.toLocaleDateString("tr-TR")+"'de");
   }
-
-  const label=labels.join(" • ")||"Güncel";
-  return{status:worst,label,last,eta,nextKm:iv.km>0&&last.km?(last.km+iv.km):null};
+  return{status:worst,label:labels.join(" • ")||"Güncel",last,eta,nextKm:iv.km>0&&last.km?(last.km+iv.km):null};
 }
 
-function statusColor(s){return s==="overdue"?"red":s==="critical"?"orange":s==="warn"?"yellow":s==="unknown"?"gray":"green";}
+function sc(s){return s==="overdue"?"sr":s==="critical"?"so":s==="warn"?"sy":s==="unknown"?"sgr":"sg";}
 
-// ══════════════════════════════════════
-// EKRAN
-// ══════════════════════════════════════
-let currentScreen="home",currentVehicleId=null,editVehicleId=null,addMaintVehicleId=null;
-let selectedColor="#3b82f6",selectedIcon="🚗",kmUpdateVehicleId=null;
+let curScreen="home",curVehicleId=null,editVehicleId=null,addMaintVehicleId=null;
+let selColor="#3b82f6",selIcon="🚗",kmUpdateVehicleId=null;
 
 function showScreen(name){
   document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
-  document.getElementById(`screen-${name}`).classList.add("active");
+  document.getElementById("screen-"+name).classList.add("active");
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.screen===name));
-  currentScreen=name;
+  curScreen=name;
   const fab=document.getElementById("fab");
-  const navAction=document.getElementById("nav-action");
-  navAction.classList.add("hidden");
-  if(name==="home"){document.getElementById("nav-title").textContent="🚗 Araç Bakım";fab.classList.remove("hidden");renderHome();}
-  else if(name==="vehicle"){fab.classList.add("hidden");renderVehicleDetail();}
-  else if(name==="history"){document.getElementById("nav-title").textContent="📋 Geçmiş";fab.classList.add("hidden");renderHistory();}
-  else if(name==="settings"){document.getElementById("nav-title").textContent="⚙️ Ayarlar";fab.classList.add("hidden");renderIntervalSettings();}
+  const na=document.getElementById("nav-action");
+  na.classList.add("hidden");
+  if(name==="home"){
+    document.getElementById("nav-title").textContent="🚗 Araç Bakım";
+    fab.style.display="flex";renderHome();
+  } else if(name==="vehicle"){
+    fab.style.display="none";renderVehicleDetail();
+  } else if(name==="history"){
+    document.getElementById("nav-title").textContent="📋 Geçmiş";
+    fab.style.display="none";renderHistory();
+  } else if(name==="settings"){
+    document.getElementById("nav-title").textContent="⚙️ Ayarlar";
+    fab.style.display="none";renderIntervalSettings();
+  }
 }
 
 document.querySelectorAll(".tab").forEach(t=>{t.onclick=()=>{if(t.dataset.screen)showScreen(t.dataset.screen);};});
 
-// ══════════════════════════════════════
-// AYARLAR - ARALIКLAR
-// ══════════════════════════════════════
 function renderIntervalSettings(){
   const list=document.getElementById("interval-list");
   list.innerHTML="";
-  Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
-    const d=DEFAULT_INTERVALS[k];
-    const iv=intervals[k]||{km:d.defKm,day:d.defDay};
+  Object.keys(DI).filter(k=>k!=="ozel").forEach(k=>{
+    const d=DI[k],iv=intervals[k]||{km:d.defKm,day:d.defDay};
     const row=document.createElement("div");
-    row.className="interval-row";
-    row.innerHTML=`
-      <span class="interval-icon">${d.icon}</span>
-      <span class="interval-name">${d.name}</span>
-      <div class="interval-inputs">
-        <input class="interval-input" type="number" id="iv-km-${k}" value="${iv.km}" placeholder="0"/>
-        <span class="interval-unit">km</span>
-        <input class="interval-input" type="number" id="iv-day-${k}" value="${iv.day}" placeholder="0"/>
-        <span class="interval-unit">gün</span>
-      </div>`;
+    row.className="ir";
+    row.innerHTML=`<span class="ii">${d.icon}</span><span class="iname">${d.name}</span>
+    <div class="iinputs">
+      <input class="iinput" type="number" id="iv-km-${k}" value="${iv.km}"/>
+      <span class="iunit">km</span>
+      <input class="iinput" type="number" id="iv-day-${k}" value="${iv.day}"/>
+      <span class="iunit">gün</span>
+    </div>`;
     list.appendChild(row);
   });
 }
 
 function saveIntervals(){
-  Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
+  Object.keys(DI).filter(k=>k!=="ozel").forEach(k=>{
     intervals[k]={
-      km:parseInt(document.getElementById(`iv-km-${k}`)?.value)||0,
-      day:parseInt(document.getElementById(`iv-day-${k}`)?.value)||0
+      km:parseInt(document.getElementById("iv-km-"+k)?.value)||0,
+      day:parseInt(document.getElementById("iv-day-"+k)?.value)||0
     };
   });
-  saveIntervalsData();
-  alert("✅ Aralıklar kaydedildi!");
+  saveIntervalsData();alert("✅ Kaydedildi!");
 }
 
-// ══════════════════════════════════════
-// HOME
-// ══════════════════════════════════════
 function renderHome(){
-  const alertsEl=document.getElementById("home-alerts");
-  const summaryEl=document.getElementById("home-summary");
-  const vehiclesEl=document.getElementById("home-vehicles");
+  const ae=document.getElementById("home-alerts");
+  const se=document.getElementById("home-summary");
+  const ve=document.getElementById("home-vehicles");
   const total=data.vehicles.length;
-  let overdueCount=0,warnCount=0;
+  let ov=0,wn=0;
   data.vehicles.forEach(v=>{
-    Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
+    Object.keys(DI).filter(k=>k!=="ozel").forEach(k=>{
       const s=getStatus(v,k);
-      if(s.status==="overdue")overdueCount++;
-      else if(s.status==="critical"||s.status==="warn")warnCount++;
+      if(s.status==="overdue")ov++;
+      else if(s.status==="critical"||s.status==="warn")wn++;
     });
   });
-  summaryEl.innerHTML=total===0?"":
-    `<div class="summary-box"><div class="summary-num" style="color:var(--accent)">${total}</div><div class="summary-lbl">Araç</div></div>
-     <div class="summary-box"><div class="summary-num" style="color:${overdueCount>0?"var(--red)":warnCount>0?"var(--yellow)":"var(--green)"}">${overdueCount+warnCount}</div><div class="summary-lbl">Uyarı</div></div>`;
-
-  let alertsHtml="";
+  se.innerHTML=total===0?"":
+    `<div class="sb"><div class="sn" style="color:var(--accent)">${total}</div><div class="sl">Araç</div></div>
+     <div class="sb"><div class="sn" style="color:${ov>0?"var(--red)":wn>0?"var(--yellow)":"var(--green)"}">${ov+wn}</div><div class="sl">Uyarı</div></div>`;
+  let ah="";
   data.vehicles.forEach(v=>{
-    Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
+    Object.keys(DI).filter(k=>k!=="ozel").forEach(k=>{
       const s=getStatus(v,k);
       if(s.status==="overdue"||s.status==="critical"){
-        alertsHtml+=`<div class="alert-banner ${s.status==="overdue"?"":"warn"}">
-          <span style="font-size:20px">${DEFAULT_INTERVALS[k].icon}</span>
-          <div class="alert-text">
-            <div class="alert-title">${v.brand} ${v.model} — ${DEFAULT_INTERVALS[k].name}</div>
-            <div class="alert-sub">${s.label}${s.eta?" • "+s.eta:""}</div>
-          </div>
-        </div>`;
+        ah+=`<div class="ab ${s.status==="overdue"?"":"warn"}">
+          <span style="font-size:20px">${DI[k].icon}</span>
+          <div class="at"><div class="atitle">${v.brand} ${v.model} — ${DI[k].name}</div>
+          <div class="asub">${s.label}${s.eta?" • "+s.eta:""}</div></div></div>`;
       }
     });
   });
-  alertsEl.innerHTML=alertsHtml;
-
-  if(data.vehicles.length===0){vehiclesEl.innerHTML=`<div class="empty">Henüz araç eklenmedi.<br/>＋ ile ekleyin.</div>`;return;}
-  vehiclesEl.innerHTML=data.vehicles.map(v=>{
-    const statuses=Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").map(k=>getStatus(v,k));
-    const overdue=statuses.filter(s=>s.status==="overdue").length;
-    const warn=statuses.filter(s=>s.status==="critical"||s.status==="warn").length;
+  ae.innerHTML=ah;
+  if(!data.vehicles.length){ve.innerHTML=`<div class="empty">Henüz araç eklenmedi.<br/>Sağ alttaki ＋ butonuna basın.</div>`;return;}
+  ve.innerHTML=data.vehicles.map(v=>{
+    const st=Object.keys(DI).filter(k=>k!=="ozel").map(k=>getStatus(v,k));
+    const ov2=st.filter(s=>s.status==="overdue").length;
+    const wn2=st.filter(s=>s.status==="critical"||s.status==="warn").length;
     let pills="";
-    if(overdue>0)pills+=`<span class="pill pill-red">⚠️ ${overdue} gecikmiş</span>`;
-    if(warn>0)pills+=`<span class="pill pill-orange">⏰ ${warn} yaklaşan</span>`;
-    if(overdue===0&&warn===0)pills+=`<span class="pill pill-green">✔ Güncel</span>`;
-    return `<div class="vehicle-card" onclick="openVehicle('${v.id}')">
-      <div class="vehicle-top">
-        <div class="vehicle-color" style="background:${v.color}">${v.icon}</div>
-        <div class="vehicle-info">
-          <div class="vehicle-name">${v.brand} ${v.model} <span style="font-size:12px;color:var(--text3)">${v.year||""}</span></div>
-          <div class="vehicle-plate">${v.plate||""}</div>
+    if(ov2>0)pills+=`<span class="pill pr">⚠️ ${ov2} gecikmiş</span>`;
+    if(wn2>0)pills+=`<span class="pill po">⏰ ${wn2} yaklaşan</span>`;
+    if(!ov2&&!wn2)pills+=`<span class="pill pg">✔ Güncel</span>`;
+    return `<div class="vc" onclick="openVehicle('${v.id}')">
+      <div class="vtop">
+        <div class="vcolor" style="background:${v.color}">${v.icon}</div>
+        <div class="vinfo">
+          <div class="vname">${v.brand} ${v.model} <span style="font-size:12px;color:var(--text3)">${v.year||""}</span></div>
+          <div class="vplate">${v.plate||""}</div>
         </div>
         <div style="text-align:right">
-          <div class="vehicle-km">${v.km?v.km.toLocaleString()+" km":"—"}</div>
+          <div style="font-size:13px;color:var(--accent);font-weight:600">${v.km?v.km.toLocaleString()+" km":"—"}</div>
           <div style="font-size:11px;color:var(--text3)">${v.dailyKm?v.dailyKm+" km/gün":""}</div>
         </div>
       </div>
-      <div class="alert-pills">${pills}</div>
+      <div class="pills">${pills}</div>
     </div>`;
   }).join("");
 }
 
-function openVehicle(id){currentVehicleId=id;showScreen("vehicle");}
+function openVehicle(id){curVehicleId=id;showScreen("vehicle");}
 
-// ══════════════════════════════════════
-// ARAÇ DETAY
-// ══════════════════════════════════════
 function renderVehicleDetail(){
-  const v=data.vehicles.find(x=>x.id===currentVehicleId);
+  const v=data.vehicles.find(x=>x.id===curVehicleId);
   if(!v){showScreen("home");return;}
-  document.getElementById("nav-title").textContent=`${v.icon} ${v.brand} ${v.model}`;
-  const navAction=document.getElementById("nav-action");
-  navAction.textContent="✏️ Düzenle";navAction.classList.remove("hidden");
-  navAction.onclick=()=>openEditVehicle(v.id);
-
-  const customItems=[...new Set(data.history.filter(h=>h.vehicleId===v.id&&h.type==="ozel").map(h=>h.customName||"Özel"))];
-  const allTypes=[...Object.keys(DEFAULT_INTERVALS),...customItems.map(c=>`ozel:${c}`)];
-
-  let rows=allTypes.map(typeKey=>{
-    let type,customName;
-    if(typeKey.startsWith("ozel:")){type="ozel";customName=typeKey.slice(5);}
-    else{type=typeKey;customName=undefined;}
-    const s=getStatus(v,type,customName);
-    const def=DEFAULT_INTERVALS[type]||{name:customName||"Özel",icon:"✏️"};
-    const sc=statusColor(s.status);
-    const lastDate=s.last?new Date(s.last.date).toLocaleDateString("tr-TR"):null;
-    let dueText=s.label!=="Kayıt yok"?s.label:(lastDate?`Son: ${lastDate}`:"Kayıt yok");
-    let etaHtml=s.eta&&s.status!=="overdue"?`<div class="maint-eta" style="color:var(--text3)">📅 ${s.eta}</div>`:"";
-    return `<div class="maint-row">
-      <div class="maint-icon">${def.icon}</div>
-      <div class="maint-info">
-        <div class="maint-name">${type==="ozel"?(customName||"Özel"):def.name}</div>
-        <div class="maint-due">${dueText}</div>
-        ${etaHtml}
+  document.getElementById("nav-title").textContent=v.icon+" "+v.brand+" "+v.model;
+  const na=document.getElementById("nav-action");
+  na.textContent="✏️ Düzenle";na.classList.remove("hidden");
+  na.onclick=()=>openEditVehicle(v.id);
+  const ci=[...new Set(data.history.filter(h=>h.vehicleId===v.id&&h.type==="ozel").map(h=>h.customName||"Özel"))];
+  const at=[...Object.keys(DI),...ci.map(c=>"ozel:"+c)];
+  let rows=at.map(tk=>{
+    let type,cn;
+    if(tk.startsWith("ozel:")){type="ozel";cn=tk.slice(5);}else{type=tk;cn=undefined;}
+    const s=getStatus(v,type,cn);
+    const def=DI[type]||{name:cn||"Özel",icon:"✏️"};
+    const scls=sc(s.status);
+    const ld=s.last?new Date(s.last.date).toLocaleDateString("tr-TR"):null;
+    const dt=s.label!=="Kayıt yok"?s.label:(ld?"Son: "+ld:"Kayıt yok");
+    const eh=s.eta&&s.status!=="overdue"?`<div class="meta2">📅 ${s.eta}</div>`:"";
+    return `<div class="mr">
+      <div class="mi">${def.icon}</div>
+      <div class="minfo">
+        <div class="mname">${type==="ozel"?(cn||"Özel"):def.name}</div>
+        <div class="mdue">${dt}</div>${eh}
       </div>
-      <div class="maint-status status-${sc}"></div>
-      <button class="maint-btn" onclick="openAddMaint('${v.id}','${type}','${customName||""}')">+ Ekle</button>
+      <div class="ms ${scls}"></div>
+      <button class="mb" onclick="openAddMaint('${v.id}','${type}','${cn||""}')">+ Ekle</button>
     </div>`;
   }).join("");
-
   document.getElementById("vehicle-detail").innerHTML=`
     <div class="card" style="border-left:4px solid ${v.color}">
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div class="vehicle-color" style="background:${v.color};font-size:28px;width:52px;height:52px">${v.icon}</div>
+        <div class="vcolor" style="background:${v.color};font-size:28px;width:52px;height:52px">${v.icon}</div>
         <div>
           <div style="font-size:20px;font-weight:800">${v.brand} ${v.model}</div>
           <div style="color:var(--text2);font-size:13px">${v.plate||""} ${v.year?"• "+v.year:""}</div>
@@ -540,36 +464,27 @@ function renderVehicleDetail(){
         <button onclick="openKmUpdate('${v.id}')" style="background:var(--accent2);border:none;border-radius:10px;padding:10px;color:#fff;cursor:pointer;font-size:12px;font-weight:700">🔢 KM<br/>Güncelle</button>
       </div>
     </div>
-    <div class="section-title">Bakım Durumu</div>
+    <div class="stitle">Bakım Durumu</div>
     <div class="card">${rows}</div>
-    <button class="btn-secondary" onclick="openAddMaint('${v.id}',null,null)">＋ Bakım Ekle</button>
-    <button class="btn-secondary" onclick="showScreen('home')" style="margin-top:4px">← Geri</button>`;
+    <button class="bs" onclick="openAddMaint('${v.id}',null,null)">＋ Bakım Ekle</button>
+    <button class="bs" onclick="showScreen('home')" style="margin-top:4px">← Geri</button>`;
 }
 
-// ══════════════════════════════════════
-// GEÇMİŞ
-// ══════════════════════════════════════
 function renderHistory(){
   const el=document.getElementById("history-content");
-  if(data.history.length===0){el.innerHTML=`<div class="empty">Henüz bakım kaydı yok.</div>`;return;}
+  if(!data.history.length){el.innerHTML=`<div class="empty">Henüz bakım kaydı yok.</div>`;return;}
   const sorted=[...data.history].sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const byV={};sorted.forEach(h=>{if(!byV[h.vehicleId])byV[h.vehicleId]=[];byV[h.vehicleId].push(h);});
+  const bv={};sorted.forEach(h=>{if(!bv[h.vehicleId])bv[h.vehicleId]=[];bv[h.vehicleId].push(h);});
   let html="";
-  Object.keys(byV).forEach(vid=>{
+  Object.keys(bv).forEach(vid=>{
     const v=data.vehicles.find(x=>x.id===vid);
-    html+=`<div class="section-title">${v?v.icon:"🚗"} ${v?v.brand+" "+v.model:"Silinmiş"}</div><div class="card">`;
-    byV[vid].forEach(h=>{
-      const def=DEFAULT_INTERVALS[h.type]||{name:h.customName||"Özel",icon:"✏️"};
+    html+=`<div class="stitle">${v?v.icon:"🚗"} ${v?v.brand+" "+v.model:"Silinmiş"}</div><div class="card">`;
+    bv[vid].forEach(h=>{
+      const def=DI[h.type]||{name:h.customName||"Özel",icon:"✏️"};
       const name=h.type==="ozel"?(h.customName||"Özel"):def.name;
-      html+=`<div class="history-row">
-        <div class="history-top">
-          <div class="history-name">${def.icon} ${name}</div>
-          <div class="history-date">${new Date(h.date).toLocaleDateString("tr-TR")}</div>
-        </div>
-        <div class="history-detail">
-          ${h.km?h.km.toLocaleString()+" km":""}${h.cost?` • ${Number(h.cost).toLocaleString()} ₺`:""}${h.place?` • ${h.place}`:""}
-          ${h.note?`<br/><span style="color:var(--text3)">${h.note}</span>`:""}
-        </div>
+      html+=`<div class="hr">
+        <div class="ht"><div class="hn">${def.icon} ${name}</div><div class="hd">${new Date(h.date).toLocaleDateString("tr-TR")}</div></div>
+        <div class="hdt">${h.km?h.km.toLocaleString()+" km":""}${h.cost?" • "+Number(h.cost).toLocaleString()+" ₺":""}${h.place?" • "+h.place:""}${h.note?"<br/>"+h.note:""}</div>
       </div>`;
     });
     html+=`</div>`;
@@ -577,16 +492,13 @@ function renderHistory(){
   el.innerHTML=html;
 }
 
-// ══════════════════════════════════════
-// ARAÇ MODAL
-// ══════════════════════════════════════
 function openAddVehicle(){
   editVehicleId=null;
   document.getElementById("mv-title").textContent="Araç Ekle";
   ["v-brand","v-model","v-year","v-plate","v-km","v-daily"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("v-delete").classList.add("hidden");
-  selectedColor="#3b82f6";selectedIcon="🚗";
-  document.querySelectorAll(".color-opt").forEach(o=>o.classList.toggle("selected",o.dataset.color===selectedColor));
+  selColor="#3b82f6";selIcon="🚗";
+  document.querySelectorAll(".co").forEach(o=>o.classList.toggle("selected",o.dataset.color===selColor));
   document.getElementById("v-err").classList.add("hidden");
   document.getElementById("modal-vehicle").classList.remove("hidden");
 }
@@ -602,28 +514,29 @@ function openEditVehicle(id){
   document.getElementById("v-km").value=v.km||"";
   document.getElementById("v-daily").value=v.dailyKm||"";
   document.getElementById("v-delete").classList.remove("hidden");
-  selectedColor=v.color;selectedIcon=v.icon;
-  document.querySelectorAll(".color-opt").forEach(o=>o.classList.toggle("selected",o.dataset.color===selectedColor));
+  selColor=v.color;selIcon=v.icon;
+  document.querySelectorAll(".co").forEach(o=>o.classList.toggle("selected",o.dataset.color===selColor));
   document.getElementById("v-err").classList.add("hidden");
   document.getElementById("modal-vehicle").classList.remove("hidden");
 }
 
 document.getElementById("color-group").onclick=e=>{
-  const opt=e.target.closest(".color-opt");if(!opt)return;
-  document.querySelectorAll(".color-opt").forEach(o=>o.classList.remove("selected"));
-  opt.classList.add("selected");selectedColor=opt.dataset.color;selectedIcon=opt.dataset.icon;
+  const opt=e.target.closest(".co");if(!opt)return;
+  document.querySelectorAll(".co").forEach(o=>o.classList.remove("selected"));
+  opt.classList.add("selected");selColor=opt.dataset.color;selIcon=opt.dataset.icon;
 };
 
 document.getElementById("v-save").onclick=()=>{
   const brand=document.getElementById("v-brand").value.trim();
   const model=document.getElementById("v-model").value.trim();
   if(!brand||!model){document.getElementById("v-err").textContent="Marka ve model zorunlu.";document.getElementById("v-err").classList.remove("hidden");return;}
-  const obj={brand,model,year:document.getElementById("v-year").value.trim(),plate:document.getElementById("v-plate").value.trim(),km:parseInt(document.getElementById("v-km").value)||0,dailyKm:parseInt(document.getElementById("v-daily").value)||0,color:selectedColor,icon:selectedIcon};
+  const obj={brand,model,year:document.getElementById("v-year").value.trim(),plate:document.getElementById("v-plate").value.trim(),km:parseInt(document.getElementById("v-km").value)||0,dailyKm:parseInt(document.getElementById("v-daily").value)||0,color:selColor,icon:selIcon};
   if(editVehicleId){Object.assign(data.vehicles.find(x=>x.id===editVehicleId),obj);}
   else{data.vehicles.push({id:crypto.randomUUID(),...obj});}
   save();document.getElementById("modal-vehicle").classList.add("hidden");
   if(editVehicleId)renderVehicleDetail();else renderHome();
 };
+
 document.getElementById("v-delete").onclick=()=>{
   if(!confirm("Bu aracı silmek istiyor musunuz?"))return;
   data.vehicles=data.vehicles.filter(x=>x.id!==editVehicleId);
@@ -632,25 +545,24 @@ document.getElementById("v-delete").onclick=()=>{
 };
 document.getElementById("v-cancel").onclick=()=>document.getElementById("modal-vehicle").classList.add("hidden");
 
-// ══════════════════════════════════════
-// BAKIM MODAL
-// ══════════════════════════════════════
 function openAddMaint(vehicleId,preType,preCustom){
   addMaintVehicleId=vehicleId;
   const today=new Date().toISOString().slice(0,10);
   document.getElementById("m-date").value=today;
-  ["m-next-km","m-cost","m-place","m-note"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});
+  ["m-cost","m-place","m-note"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("m-err").classList.add("hidden");
   const v=data.vehicles.find(x=>x.id===vehicleId);
   document.getElementById("m-km").value=v?.km||"";
   document.getElementById("m-type").value=preType||"yag";
   document.getElementById("m-custom-name").value=(preType==="ozel"&&preCustom)?preCustom:"";
   document.getElementById("m-custom-wrap").classList.toggle("hidden",document.getElementById("m-type").value!=="ozel");
-  document.getElementById("mm-title").textContent=`${v?v.brand+" "+v.model:"Araç"} — Bakım`;
+  document.getElementById("mm-title").textContent=(v?v.brand+" "+v.model:"Araç")+" — Bakım";
   document.getElementById("modal-maint").classList.remove("hidden");
 }
 
-document.getElementById("m-type").onchange=e=>{document.getElementById("m-custom-wrap").classList.toggle("hidden",e.target.value!=="ozel");};
+document.getElementById("m-type").onchange=e=>{
+  document.getElementById("m-custom-wrap").classList.toggle("hidden",e.target.value!=="ozel");
+};
 
 document.getElementById("m-save").onclick=()=>{
   const type=document.getElementById("m-type").value;
@@ -662,17 +574,13 @@ document.getElementById("m-save").onclick=()=>{
   const note=document.getElementById("m-note").value.trim()||null;
   if(!date){document.getElementById("m-err").textContent="Tarih zorunlu.";document.getElementById("m-err").classList.remove("hidden");return;}
   if(type==="ozel"&&!customName){document.getElementById("m-err").textContent="Bakım adı girin.";document.getElementById("m-err").classList.remove("hidden");return;}
-  if(km){const v=data.vehicles.find(x=>x.id===addMaintVehicleId);if(v&&km>v.km)v.km=km;}
+  if(km){const v=data.vehicles.find(x=>x.id===addMaintVehicleId);if(v&&km>(v.km||0))v.km=km;}
   data.history.push({id:crypto.randomUUID(),vehicleId:addMaintVehicleId,type,customName,date,km,cost,place,note});
   save();document.getElementById("modal-maint").classList.add("hidden");
-  if(currentScreen==="vehicle")renderVehicleDetail();else renderHome();
-  requestNotifPermission();
+  if(curScreen==="vehicle")renderVehicleDetail();else renderHome();
 };
 document.getElementById("m-cancel").onclick=()=>document.getElementById("modal-maint").classList.add("hidden");
 
-// ══════════════════════════════════════
-// KM GÜNCELLE + DEĞİŞİM KONTROL
-// ══════════════════════════════════════
 function openKmUpdate(id){
   kmUpdateVehicleId=id;
   const v=data.vehicles.find(x=>x.id===id);
@@ -680,74 +588,58 @@ function openKmUpdate(id){
   document.getElementById("km-daily").value=v?.dailyKm||"";
   document.getElementById("km-checklist-wrap").classList.add("hidden");
   document.getElementById("km-checklist").innerHTML="";
+  changedTypes.clear();
   document.getElementById("modal-km").classList.remove("hidden");
-  // Anlık kontrol
-  if(v) checkDueItems(v,v.km);
+  if(v)checkDueItems(v,v.km||0);
 }
 
 document.getElementById("km-val").oninput=function(){
   const v=data.vehicles.find(x=>x.id===kmUpdateVehicleId);
-  const newKm=parseInt(this.value)||0;
-  if(v&&newKm>0) checkDueItems(v,newKm);
+  const nk=parseInt(this.value)||0;
+  if(v&&nk>0)checkDueItems(v,nk);
 };
 
 function checkDueItems(v,newKm){
-  const dueTypes=[];
-  Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
+  const due=[];
+  Object.keys(DI).filter(k=>k!=="ozel").forEach(k=>{
     const iv=intervals[k]||{km:0,day:0};
     const hist=data.history.filter(h=>h.vehicleId===v.id&&h.type===k).sort((a,b)=>new Date(b.date)-new Date(a.date));
     const last=hist[0];
     if(iv.km>0){
-      const lastKm=last?.km||0;
-      const nextKm=lastKm+iv.km;
-      if(newKm>=nextKm*0.95){ // %95'ine gelince göster
-        dueTypes.push({type:k,nextKm,lastKm,last});
-      }
-    }
-    if(iv.day>0&&last){
-      const nextDate=new Date(new Date(last.date).getTime()+iv.day*86400000);
-      const daysLeft=Math.ceil((nextDate-Date.now())/86400000);
-      if(daysLeft<=30&&!dueTypes.find(d=>d.type===k)){
-        dueTypes.push({type:k,nextDate,daysLeft,last});
-      }
+      const lk=last?.km||0,nxt=lk+iv.km;
+      if(newKm>=nxt*0.9)due.push({type:k,label:nxt.toLocaleString()+" km'de değişmeli"});
+    } else if(iv.day>0&&last){
+      const nd=new Date(new Date(last.date).getTime()+iv.day*86400000);
+      const dl=Math.ceil((nd-Date.now())/86400000);
+      if(dl<=30&&!due.find(d=>d.type===k))due.push({type:k,label:dl<=0?Math.abs(dl)+" gün geçti":dl+" gün kaldı"});
     }
   });
-
   const wrap=document.getElementById("km-checklist-wrap");
   const list=document.getElementById("km-checklist");
-  if(dueTypes.length===0){wrap.classList.add("hidden");return;}
+  if(!due.length){wrap.classList.add("hidden");return;}
   wrap.classList.remove("hidden");
-
-  list.innerHTML=dueTypes.map(d=>{
-    const def=DEFAULT_INTERVALS[d.type];
-    const detail=d.nextKm?`${d.nextKm.toLocaleString()} km'de değişmeli`:
-                 d.daysLeft<=0?`${Math.abs(d.daysLeft)} gün geçti`:`${d.daysLeft} gün kaldı`;
-    return `<div class="check-item" id="ci-${d.type}">
-      <div class="check-left">
-        <span class="check-icon">${def.icon}</span>
-        <div class="check-info">
-          <div class="check-name">${def.name}</div>
-          <div class="check-detail">${detail}</div>
-        </div>
-      </div>
-      <div class="check-btns">
-        <button class="check-yes" onclick="markChanged('${d.type}')">✔ Değişti</button>
-        <button class="check-no" onclick="markSkip('${d.type}')">Atla</button>
-      </div>
-    </div>`;
-  }).join("");
+  list.innerHTML=due.map(d=>`<div class="ci" id="ci-${d.type}">
+    <div class="cl">
+      <span class="ck">${DI[d.type].icon}</span>
+      <div><div class="cn">${DI[d.type].name}</div><div class="cd">${d.label}</div></div>
+    </div>
+    <div class="cbs">
+      <button class="cy" onclick="markChanged('${d.type}')">✔ Değişti</button>
+      <button class="cn2" onclick="markSkip('${d.type}')">Atla</button>
+    </div>
+  </div>`).join("");
 }
 
 const changedTypes=new Set();
 function markChanged(type){
   changedTypes.add(type);
-  const el=document.getElementById(`ci-${type}`);
-  if(el){el.style.opacity=".4";el.querySelector(".check-btns").innerHTML=`<span style="color:var(--green);font-weight:700;font-size:13px">✔ Kaydedilecek</span>`;}
+  const el=document.getElementById("ci-"+type);
+  if(el){el.style.opacity=".4";el.querySelector(".cbs").innerHTML=`<span style="color:var(--green);font-weight:700;font-size:13px">✔ Kaydedilecek</span>`;}
 }
 function markSkip(type){
   changedTypes.delete(type);
-  const el=document.getElementById(`ci-${type}`);
-  if(el){el.style.opacity=".4";el.querySelector(".check-btns").innerHTML=`<span style="color:var(--text3);font-size:13px">Atlandı</span>`;}
+  const el=document.getElementById("ci-"+type);
+  if(el){el.style.opacity=".4";el.querySelector(".cbs").innerHTML=`<span style="color:var(--text3);font-size:13px">Atlandı</span>`;}
 }
 
 document.getElementById("km-save").onclick=()=>{
@@ -756,65 +648,29 @@ document.getElementById("km-save").onclick=()=>{
   if(!km||km<0)return;
   const v=data.vehicles.find(x=>x.id===kmUpdateVehicleId);
   if(v){v.km=km;if(daily>0)v.dailyKm=daily;}
-
-  // Değişen parçaları kaydet
   const today=new Date().toISOString().slice(0,10);
   changedTypes.forEach(type=>{
     data.history.push({id:crypto.randomUUID(),vehicleId:kmUpdateVehicleId,type,customName:"",date:today,km,cost:null,place:null,note:"KM güncellemesinde otomatik kaydedildi"});
   });
   changedTypes.clear();
-
   save();document.getElementById("modal-km").classList.add("hidden");
-  if(currentScreen==="vehicle")renderVehicleDetail();else renderHome();
-  checkAndNotify();
+  if(curScreen==="vehicle")renderVehicleDetail();else renderHome();
 };
 document.getElementById("km-cancel").onclick=()=>{changedTypes.clear();document.getElementById("modal-km").classList.add("hidden");};
 
-// ══════════════════════════════════════
-// BİLDİRİMLER
-// ══════════════════════════════════════
-function requestNotifPermission(){
-  if("Notification" in window && Notification.permission==="default"){
-    Notification.requestPermission();
-  }
-}
-
-function checkAndNotify(){
-  if(!("Notification" in window)||Notification.permission!=="granted")return;
-  data.vehicles.forEach(v=>{
-    Object.keys(DEFAULT_INTERVALS).filter(k=>k!=="ozel").forEach(k=>{
-      const s=getStatus(v,k);
-      if(s.status==="overdue"||s.status==="critical"){
-        const def=DEFAULT_INTERVALS[k];
-        new Notification(`🚗 ${v.brand} ${v.model}`,{
-          body:`${def.icon} ${def.name} — ${s.label}${s.eta?" • "+s.eta:""}`,
-          icon:"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚗</text></svg>"
-        });
-      }
-    });
-  });
-}
-
-// Sayfa açıldığında bildirim kontrolü
-window.addEventListener("load",()=>{
-  requestNotifPermission();
-  setTimeout(checkAndNotify,2000);
-});
-
-// ══════════════════════════════════════
-// FAB & AYARLAR
-// ══════════════════════════════════════
-document.getElementById("fab").onclick=()=>openAddVehicle();
 document.getElementById("export-btn").onclick=()=>{
   const blob=new Blob([JSON.stringify({data,intervals},null,2)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);
-  a.download=`arac_bakim_${new Date().toISOString().slice(0,10)}.json`;a.click();
+  a.download="arac_bakim_"+new Date().toISOString().slice(0,10)+".json";a.click();
 };
 document.getElementById("import-btn-trigger").onclick=()=>document.getElementById("import-file").click();
 document.getElementById("import-file").onchange=e=>{
   const file=e.target.files[0];if(!file)return;
   const r=new FileReader();
-  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(d.data)data=d.data;if(d.intervals)intervals=d.intervals;save();saveIntervalsData();alert("✅ İçe aktarıldı!");renderHome();}catch{alert("Hatalı dosya!");}};
+  r.onload=ev=>{
+    try{const d=JSON.parse(ev.target.result);if(d.data)data=d.data;if(d.intervals)intervals=d.intervals;save();saveIntervalsData();alert("✅ İçe aktarıldı!");renderHome();}
+    catch{alert("Hatalı dosya!");}
+  };
   r.readAsText(file);
 };
 document.getElementById("clear-btn").onclick=()=>{
@@ -825,4 +681,4 @@ document.getElementById("clear-btn").onclick=()=>{
 renderHome();
 </script>
 </body>
-      </html>
+          </html>
